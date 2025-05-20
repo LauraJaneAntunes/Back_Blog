@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import userRoutes from './user.routes';
-import artigoRoutes from './artigo.routes';
+import artigoRoutes from './artigo.routes.ts';
 
 const router = Router();
 
