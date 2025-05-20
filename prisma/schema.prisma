@@ -1,0 +1,30 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  senha    String
+  artigos  Artigo[] // Um usuário pode ter vários artigos
+  criadoEm DateTime @default(now())
+}
+
+model Artigo {
+  id              Int      @id @default(autoincrement())
+  titulo          String
+  conteudo        String
+  imagemDestacada String?   // Opcional
+  publicadoEm     DateTime @default(now())
+  atualizadoEm    DateTime @updatedAt
+  autorId         Int
+  autor           User     @relation(fields: [autorId], references: [id])
+}

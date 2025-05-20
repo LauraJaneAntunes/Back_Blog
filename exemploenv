@@ -1,0 +1,12 @@
+# 1º Renomeio este arquivo para: .env
+# 2º Edite, adicionando suas variáveis
+
+
+# Porta do servidor
+PORT=3000
+
+# Configurações do banco de dados (exemplo com MySQL)
+DATABASE_URL="mysql://usuario:senha@localhost:3306/nome_do_banco"
+
+# Chave secreta usada para assinar/verificar JWTs
+JWT_SECRET=sua_chave_super_secreta
