@@ -68,7 +68,7 @@ export const createArtigo = async (req: AuthenticatedRequest, res: Response): Pr
         titulo,
         conteudo,
         imagemDestacada,
-        autorId: autorId,
+        autorId: autorId
       },
     });
 
