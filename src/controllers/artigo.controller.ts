@@ -55,9 +55,10 @@ export const getArtigoById = async (req: Request, res: Response): Promise<void> 
 
 export const createArtigo = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   const { titulo, conteudo, imagemDestacada } = req.body;
+  const autorId = req.user?.id;
 
-  if (!titulo || !conteudo) {
-    res.status(400).json({ message: 'Título e conteúdo são obrigatórios.' });
+  if (!titulo || !conteudo || !autorId) {
+    res.status(400).json({ message: 'Autor, título e conteúdo são obrigatórios.' });
     return;
   }
 
@@ -67,12 +68,13 @@ export const createArtigo = async (req: AuthenticatedRequest, res: Response): Pr
         titulo,
         conteudo,
         imagemDestacada,
-        autorId: req.user!.id,
+        autorId: autorId,
       },
     });
 
     res.status(201).json(novoArtigo);
   } catch (error) {
+    console.error('Erro ao criar artigo:', error);
     res.status(500).json({ message: 'Erro ao criar artigo.' });
   }
 };
