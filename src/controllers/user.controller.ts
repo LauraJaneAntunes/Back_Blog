@@ -32,7 +32,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const login = async (req: Request, res: Response): Promise<void> => {
-  const { email, password } = req.body;
+  const { email, senha } = req.body;
 
   try {
     const user = await prisma.user.findUnique({ where: { email } });
@@ -41,7 +41,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const isValid = await bcrypt.compare(password, user.senha);
+    const isValid = await bcrypt.compare(senha, user.senha);
     if (!isValid) {
       res.status(401).json({ error: 'Senha inválida.' });
       return;
