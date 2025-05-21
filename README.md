@@ -18,11 +18,7 @@
 >
 > nodemon
 >
->
->
 > ---
->
->
 >
 > Estrutura:
 >
@@ -50,3 +46,32 @@
 > ├── .gitignore
 > ├── package.json
 > ├── tsconfig.json
+
+
+---
+
+
+Testes Postman
+
+Cadastro de usuário (/api/users/register)
+Método: POST
+
+URL: http://localhost:3000/api/users/register
+Header: Content-Type: application/json
+Body: tipo raw com um JSON válido.
+{
+  "nome": "Teste",
+  "email": "teste@example.com",
+  "senha": "123456"
+}
+
+Login (/api/users/login)
+Método: POST
+
+URL: http://localhost:3000/api/users/login
+Header: Content-Type: application/json
+Body: tipo raw com um JSON válido.
+{
+  "email": "laura@example.com",
+  "senha": "123456"
+}
