@@ -14,7 +14,7 @@ async function startServer() {
 
     // Iniciar o servidor
     app.listen(port, () => {
-      const url = `http://localhost:${port}`;
+      const url = `http://localhost:${port}/api`;
       console.log(`Servidor está rodando na porta: ${url}`);
     });
   } catch (error) {
