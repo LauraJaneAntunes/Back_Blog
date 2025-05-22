@@ -25,6 +25,35 @@ export const getAllArtigos = async (_req: Request, res: Response): Promise<void>
   }
 };
 
+export const getMeusArtigos = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  const userId = req.user?.id;
+
+  try {
+    const artigos = await prisma.artigo.findMany({
+      where: {
+        autorId: userId,
+      },
+      include: {
+        autor: {
+          select: {
+            id: true,
+            nome: true,
+            email: true,
+          },
+        },
+      },
+      orderBy: {
+        publicadoEm: 'desc',
+      },
+    });
+
+    res.status(200).json(artigos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao buscar seus artigos.' });
+  }
+};
+
 export const getArtigoById = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 

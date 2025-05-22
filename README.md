@@ -107,9 +107,9 @@ Aqui estão alguns exemplos de requisições que você pode fazer usando o Postm
 * **Body (raw - JSON):**
   ```json
   {
-      "nome": "Teste",
-      "email": "teste@example.com",
-      "senha": "123456"
+      "nome": "Teste1000",
+      "email": "teste1000@email.com",
+      "senha": "Senh@123"
   }
   ```
 
@@ -160,7 +160,17 @@ Aqui estão alguns exemplos de requisições que você pode fazer usando o Postm
 * **Método:** `GET`
 * **URL:** `http://localhost:3000/api/artigos`
 
-### **6. Editar Artigo**
+### 6. Listar Artigos do Usuário Logado
+
+* **Endpoint:** `/api/artigos/meus`
+* **Método:** `GET`
+* **URL:** `http://localhost:3000/api/artigos/meus`
+* **Descrição:** Retorna somente os artigos do usuário autenticado.
+* **Headers:**
+  * `Content-Type: application/json`
+  * `Authorization: Bearer SEU_TOKEN_JWT`
+
+### **7. Editar Artigo**
 
 * **Endpoint:** `/api/artigos/:id`
 * **Método:** `PUT`
@@ -176,7 +186,7 @@ Aqui estão alguns exemplos de requisições que você pode fazer usando o Postm
   }
   ```
 
-### **7. Deletar Artigo**
+### **8. Deletar Artigo**
 
 * **Endpoint:** `/api/artigos/:id`
 * **Método:** `DELETE`
@@ -185,7 +195,6 @@ Aqui estão alguns exemplos de requisições que você pode fazer usando o Postm
   * `Authorization: Bearer SEU_TOKEN_JWT`
 
 ---
-
 
 ## 📄 Licença
 

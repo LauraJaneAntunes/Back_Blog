@@ -25,6 +25,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       },
     });
 
+    const { senha: _, ...userSafe } = user;
+
     res.status(201).json({ message: 'Usuário criado com sucesso', user: { id: user.id, nome: user.nome, email: user.email } });
   } catch (err) {
     res.status(500).json({ error: 'Erro no servidor.' });
@@ -49,6 +51,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
 
+    const { senha: _, ...userSafe } = user;
+    
     res.status(200).json({ message: 'Login realizado com sucesso', token });
   } catch (err) {
     res.status(500).json({ error: 'Erro no servidor.' });

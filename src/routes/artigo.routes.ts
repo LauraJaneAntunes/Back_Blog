@@ -4,6 +4,7 @@ import { artigoMiddleware } from '../middlewares/artigo.middleware';
 import {
   getAllArtigos,
   getArtigoById,
+  getMeusArtigos,
   createArtigo,
   updateArtigo,
   deleteArtigo,
@@ -11,11 +12,12 @@ import {
 
 const router = Router();
 
-// Rotas públicas
 router.get('/', getAllArtigos);
+
+router.get('/meus', authMiddleware, getMeusArtigos);
+
 router.get('/:id', getArtigoById);
 
-// Rotas protegidas
 router.post('/', authMiddleware, createArtigo);
 router.put('/:id', authMiddleware, artigoMiddleware, updateArtigo);
 router.delete('/:id', authMiddleware, artigoMiddleware, deleteArtigo);
