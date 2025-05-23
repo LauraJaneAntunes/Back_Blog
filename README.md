@@ -23,6 +23,9 @@
 > A estrutura do projeto é organizada da seguinte forma:
 >
 > ├── node_modules/
+>
+> ├── dump/				# contem o backup do banco de dados
+> │   └── blog.sql
 > ├── prisma/
 > │   ├── schema.prisma                  # Definição do esquema do banco de dados
 > │   └── migrations/                    # Migrações do Prisma
@@ -33,7 +36,9 @@
 > │   │   ├── artigo.controller.ts       # Lógica para manipulação de artigos
 > │   │   └── user.controller.ts         # Lógica para manipulação de usuários
 > │   ├── middlewares/
+> │   │   ├── artigo.middleware.ts       # Middleware para autenticação JWT
 > │   │   └── auth.middleware.ts         # Middleware para autenticação JWT
+>
 > │   ├── routes/
 > │   │   ├── artigo.routes.ts           # Definição das rotas de artigos
 > │   │   ├── user.routes.ts             # Definição das rotas de usuários
@@ -57,7 +62,7 @@ Siga os passos abaixo para configurar e rodar o projeto localmente:
 1. **Clone o repositório:**
 
    ```bash
-   git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
+   git clone [https://github.com/LauraJaneAntunes/Back_Blog.git](https://github.com/seu-usuario/seu-repositorio.git)
    cd seu-repositorio/backend
    ```
 2. **Instale as dependências:**
@@ -90,6 +95,31 @@ Siga os passos abaixo para configurar e rodar o projeto localmente:
    ```
 
    O servidor estará rodando em `http://localhost:3000`.
+
+---
+
+## 🔑 Endpoints da API
+
+### 👤 Autenticação & Usuários
+
+| Método | Endpoint                       | Descrição                       |
+| ------- | ------------------------------ | --------------------------------- |
+| POST    | `/api/users/register`        | Registrar um novo usuário        |
+| POST    | `/api/users/login`           | Realizar login                    |
+| POST    | `/api/users/forgot-password` | Recuperar senha (em construção) |
+| GET     | `/api/users/profile`         | Ver perfil do usuário logado     |
+| PUT     | `/api/users/profile`         | Editar perfil do usuário logado  |
+
+### 📝 Artigos
+
+| Método | Endpoint              | Descrição                                  |
+| ------- | --------------------- | -------------------------------------------- |
+| GET     | `/api/artigos`      | Listar todos os artigos públicos            |
+| GET     | `/api/artigos/meus` | Listar artigos do usuário autenticado       |
+| GET     | `/api/artigos/:id`  | Obter artigo por ID                          |
+| POST    | `/api/artigos`      | Criar um novo artigo (autenticado)           |
+| PUT     | `/api/artigos/:id`  | Editar artigo (autenticado e proprietário)  |
+| DELETE  | `/api/artigos/:id`  | Deletar artigo (autenticado e proprietário) |
 
 ---
 
@@ -196,6 +226,15 @@ Aqui estão alguns exemplos de requisições que você pode fazer usando o Postm
 
 ---
 
-## 📄 Licença
 
-Este projeto está sob a licença [MIT](https://opensource.org/licenses/MIT).
+
+## 🗄️ Banco de Dados
+
+O arquivo `dump/blog.sql` contém o dump do banco MySQL.
+
+### 🔥 Para restaurar:
+
+1. Abra o phpMyAdmin.
+2. Crie um banco chamado `blog`.
+3. Vá na aba **Importar**.
+4. Selecione `dump/blog.sql` e clique em **Executar**.
